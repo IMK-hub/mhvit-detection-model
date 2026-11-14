@@ -1,5 +1,7 @@
+
 streamlit
-torch==2.5.1
-torchvision==0.20.1
-Pillow>=10.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+pillow>=10.0
+numpy>=1.26
 requests>=2.31.0
