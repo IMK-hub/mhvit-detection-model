@@ -654,48 +654,6 @@ with col1:
     )
 
     
-if uploaded_file is not None:
-
-    st.html(f"""
-    <div style="
-        background: linear-gradient(110deg, #071936, #1559a9);
-        border: 1px solid #3976ba;
-        border-radius: 11px;
-        padding: 15px 18px;
-        margin: 12px 0;
-        box-shadow: 0 4px 12px rgba(15,55,110,0.12);
-    ">
-
-        <div style="
-            color: #a9d5ff;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            margin-bottom: 7px;
-        ">
-            📁 SELECTED SATELLITE IMAGE
-        </div>
-
-        <div style="
-            color: #ffffff;
-            font-size: 19px;
-            font-weight: 800;
-            overflow-wrap: anywhere;
-            line-height: 1.4;
-        ">
-            {html.escape(uploaded_file.name)}
-        </div>
-
-        <div style="
-            color: #c3dcff;
-            font-size: 10px;
-            margin-top: 6px;
-        ">
-            IMAGE READY FOR MH-ViT ANALYSIS
-        </div>
-
-    </div>
-    """)
 
     
     image = None
@@ -989,7 +947,49 @@ with col2:
         </div>
         """)
 
+if uploaded_file is not None:
 
+    st.html(f"""
+    <div style="
+        background: linear-gradient(110deg, #071936, #1559a9);
+        border: 1px solid #3976ba;
+        border-radius: 11px;
+        padding: 15px 18px;
+        margin: 12px 0;
+        box-shadow: 0 4px 12px rgba(15,55,110,0.12);
+    ">
+
+        <div style="
+            color: #a9d5ff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 7px;
+        ">
+            📁 SELECTED SATELLITE IMAGE
+        </div>
+
+        <div style="
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+            line-height: 1.4;
+        ">
+            {html.escape(uploaded_file.name)}
+        </div>
+
+        <div style="
+            color: #c3dcff;
+            font-size: 10px;
+            margin-top: 6px;
+        ">
+            IMAGE READY FOR MH-ViT ANALYSIS
+        </div>
+
+    </div>
+    """)
+    
 # =====================================================
 # 9. BOTTOM INFORMATION
 # =====================================================
