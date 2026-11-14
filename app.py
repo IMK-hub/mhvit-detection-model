@@ -17,7 +17,7 @@ from model import MHViTModel
 # =====================================================
 
 st.set_page_config(
-    page_title="MH-ViT Detection Model | DisasterVision AI",
+    page_title="MH-ViT Detection Model",
     page_icon="🛰️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -54,7 +54,7 @@ CLASS_INFO = {
     },
     "Landslide": {
         "icon": "⛰️",
-        "color": "#818cf8"
+        "color": "#a5b4fc"
     }
 }
 
@@ -62,38 +62,6 @@ CLASS_INFO = {
 # =====================================================
 # 2. CUSTOM CSS
 # =====================================================
-
-st.markdown("""
-<style>
-
-/* Hide Streamlit Header */
-header[data-testid="stHeader"] {
-    display: none !important;
-}
-
-/* Hide Streamlit Toolbar */
-[data-testid="stToolbar"] {
-    display: none !important;
-}
-
-/* Hide Deploy Button */
-[data-testid="stAppDeployButton"] {
-    display: none !important;
-}
-
-/* Hide Main Menu */
-#MainMenu {
-    visibility: hidden;
-}
-
-/* Hide Footer */
-footer {
-    visibility: hidden;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 
 st.markdown("""
 <style>
@@ -109,15 +77,7 @@ st.markdown("""
 }
 
 header[data-testid="stHeader"] {
-    display: none !important;
-}
-
-[data-testid="stToolbar"] {
-    display: none !important;
-}
-
-[data-testid="stAppDeployButton"] {
-    display: none !important;
+    display: none;
 }
 
 #MainMenu,
@@ -138,17 +98,13 @@ footer {
 
 .block-container {
     max-width: 1500px;
-    padding-top: 0.7rem;
-    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
-div[data-testid="stVerticalBlock"] {
-    gap: 0.55rem;
-}
-
-/* HERO HEADER */
+/* HEADER */
 
 .hero-container {
     background: linear-gradient(
@@ -157,7 +113,7 @@ div[data-testid="stVerticalBlock"] {
         #103b7a,
         #1559a9
     );
-    padding: 18px 24px;
+    padding: 20px 25px;
     border-radius: 13px;
     border: 1px solid #285c9d;
     box-shadow: 0 5px 18px rgba(15,65,130,0.15);
@@ -169,14 +125,13 @@ div[data-testid="stVerticalBlock"] {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .hero-title {
     font-size: 25px;
     font-weight: 800;
-    color: white;
-    margin: 0;
+    color: #ffffff;
     letter-spacing: 0.3px;
 }
 
@@ -202,7 +157,7 @@ div[data-testid="stVerticalBlock"] {
     color: #103568;
     font-size: 17px;
     font-weight: 700;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .section-subtitle {
@@ -211,18 +166,43 @@ div[data-testid="stVerticalBlock"] {
     margin-bottom: 12px;
 }
 
-/* LEFT PANEL */
+/* UPLOAD PANEL */
 
-.left-panel {
-    background: white;
+.upload-panel {
+    background: #ffffff;
     border: 1px solid #d6e6f8;
     border-radius: 13px;
-    padding: 15px;
+    padding: 16px;
     box-shadow: 0 4px 15px rgba(15,55,110,0.06);
-    min-height: 470px;
+    min-height: 400px;
 }
 
-/* RIGHT ASSESSMENT PANEL */
+/* EMPTY IMAGE */
+
+.empty-image {
+    background: #f7fbff;
+    border: 1px dashed #78a9dc;
+    border-radius: 12px;
+    padding: 75px 15px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.empty-icon {
+    font-size: 48px;
+}
+
+.empty-image h3 {
+    color: #174477;
+    font-size: 18px;
+}
+
+.empty-image p {
+    color: #8496ad;
+    font-size: 12px;
+}
+
+/* ASSESSMENT */
 
 .assessment-card {
     background: linear-gradient(
@@ -232,16 +212,17 @@ div[data-testid="stVerticalBlock"] {
     );
     border: 1px solid #2861a5;
     border-radius: 13px;
-    padding: 18px;
+    padding: 19px;
     color: white;
     box-shadow: 0 5px 18px rgba(10,45,100,0.15);
+    min-height: 400px;
 }
 
 .assessment-title {
     font-size: 17px;
     font-weight: 700;
-    color: white;
-    margin-bottom: 14px;
+    color: #ffffff;
+    margin-bottom: 15px;
 }
 
 .threat-box {
@@ -253,46 +234,43 @@ div[data-testid="stVerticalBlock"] {
     border: 1px solid #3976ba;
     border-radius: 10px;
     padding: 15px;
-    margin-bottom: 16px;
+    margin-bottom: 17px;
 }
 
 .threat-label {
     font-size: 22px;
     font-weight: 800;
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 .confidence {
     font-size: 29px;
     font-weight: 800;
-    color: white;
+    color: #ffffff;
 }
 
 .confidence-label {
     color: #c3dcff;
     font-size: 11px;
-    margin-left: 5px;
 }
-
-/* PROBABILITY BARS */
 
 .prob-heading {
     font-size: 13px;
     font-weight: 700;
-    color: white;
-    margin-bottom: 13px;
+    color: #ffffff;
+    margin-bottom: 15px;
 }
 
 .prob-row {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .prob-title {
     display: flex;
     justify-content: space-between;
-    color: white;
-    font-size: 11px;
-    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 12px;
+    margin-bottom: 7px;
 }
 
 .prob-track {
@@ -308,47 +286,24 @@ div[data-testid="stVerticalBlock"] {
     border-radius: 20px;
 }
 
-/* EMPTY RESULT */
-
 .empty-title {
     font-size: 21px;
     font-weight: 800;
     color: #7dd3fc;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .empty-description {
     color: #b9d9ff;
     font-size: 11px;
-    margin-top: 8px;
+    margin-top: 9px;
     line-height: 1.6;
 }
 
-/* BOTTOM INFORMATION */
-
-.info-strip {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    background: white;
-    border: 1px solid #d6e6f8;
-    border-radius: 11px;
-    padding: 13px 17px;
-    margin-top: 16px;
-    box-shadow: 0 3px 12px rgba(15,55,110,0.05);
-}
-
-.info-item {
-    color: #7188a5;
-    font-size: 10px;
-}
-
-.info-item b {
-    color: #123c78;
+.supported-category {
+    color: #93c5fd;
     font-size: 12px;
-    display: block;
-    margin-top: 4px;
+    margin: 15px 0;
 }
 
 /* FILE UPLOADER */
@@ -358,7 +313,7 @@ div[data-testid="stVerticalBlock"] {
     border: 1px dashed #6da4dc;
     border-radius: 10px;
     padding: 8px;
-    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 /* IMAGE */
@@ -372,7 +327,7 @@ div[data-testid="stVerticalBlock"] {
     background: #f0f6fc;
 }
 
-/* PREDICTION BUTTON */
+/* BUTTON */
 
 .stButton > button {
     background: linear-gradient(
@@ -394,7 +349,34 @@ div[data-testid="stVerticalBlock"] {
     border-color: #22d3ee;
 }
 
-/* RESPONSIVE */
+/* BOTTOM INFORMATION */
+
+.info-strip {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: white;
+    border: 1px solid #d6e6f8;
+    border-radius: 11px;
+    padding: 15px 18px;
+    margin-top: 18px;
+    box-shadow: 0 3px 12px rgba(15,55,110,0.05);
+}
+
+.info-item {
+    color: #7188a5;
+    font-size: 10px;
+}
+
+.info-item b {
+    color: #123c78;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* MOBILE */
 
 @media (max-width: 768px) {
 
@@ -407,7 +389,8 @@ div[data-testid="stVerticalBlock"] {
         font-size: 20px;
     }
 
-    .left-panel {
+    .upload-panel,
+    .assessment-card {
         min-height: auto;
     }
 
@@ -422,7 +405,7 @@ div[data-testid="stVerticalBlock"] {
 
 
 # =====================================================
-# 3. MODEL LOADING
+# 3. DOWNLOAD AND LOAD MODEL
 # =====================================================
 
 @st.cache_resource
@@ -430,29 +413,29 @@ def load_model():
 
     if not MODEL_PATH.exists():
 
-        with st.spinner("Downloading MH-ViT model..."):
+        response = requests.get(
+            MODEL_URL,
+            stream=True,
+            timeout=(20, 300)
+        )
 
-            response = requests.get(
-                MODEL_URL,
-                stream=True,
-                timeout=(20, 300)
-            )
+        response.raise_for_status()
 
-            response.raise_for_status()
+        temp_path = MODEL_PATH.with_suffix(".part")
 
-            temp_path = MODEL_PATH.with_suffix(".part")
+        with open(temp_path, "wb") as file:
 
-            with open(temp_path, "wb") as file:
+            for chunk in response.iter_content(
+                chunk_size=1024 * 1024
+            ):
 
-                for chunk in response.iter_content(
-                    chunk_size=1024 * 1024
-                ):
-                    if chunk:
-                        file.write(chunk)
+                if chunk:
+                    file.write(chunk)
 
-            temp_path.replace(MODEL_PATH)
+        temp_path.replace(MODEL_PATH)
 
     try:
+
         checkpoint = torch.load(
             MODEL_PATH,
             map_location=DEVICE,
@@ -460,6 +443,7 @@ def load_model():
         )
 
     except TypeError:
+
         checkpoint = torch.load(
             MODEL_PATH,
             map_location=DEVICE
@@ -469,7 +453,7 @@ def load_model():
         raise ValueError("Invalid checkpoint format.")
 
     if "model_state_dict" not in checkpoint:
-        raise ValueError("Invalid checkpoint format.")
+        raise ValueError("model_state_dict not found.")
 
     state_dict = checkpoint["model_state_dict"]
 
@@ -490,19 +474,24 @@ def load_model():
 
     model = MHViTModel(
         num_classes=num_classes,
+
         use_multiscale=checkpoint.get(
             "use_multiscale", True
         ),
+
         use_hazard_attention=checkpoint.get(
             "use_hazard_attention", True
         ),
+
         use_fusion=checkpoint.get(
             "use_fusion", True
         ),
+
         use_confidence_head=checkpoint.get(
             "use_confidence_head",
             "confidence_head.0.weight" in state_dict
         ),
+
         pretrained=False
     )
 
@@ -531,11 +520,7 @@ def load_model():
 
     disaster_indices = [
         i for i, name in enumerate(classes)
-        if name in [
-            "Flood",
-            "Wildfire",
-            "Landslide"
-        ]
+        if name in ["Flood", "Wildfire", "Landslide"]
     ]
 
     return (
@@ -596,8 +581,7 @@ def predict_image(
         ]
 
         predicted_probability = (
-            disaster_probs[predicted_index].item()
-            * 100
+            disaster_probs[predicted_index].item() * 100
         )
 
     return (
@@ -612,13 +596,12 @@ def predict_image(
 # 5. HEADER
 # =====================================================
 
-st.markdown("""
+st.html("""
 <div class="hero-container">
 
     <div class="hero-content">
 
         <div>
-
             <div class="hero-title">
                 🛰️ MHViT Detection Model
             </div>
@@ -627,7 +610,6 @@ st.markdown("""
                 DisasterVision AI | Satellite Image-Based
                 Natural Disaster Classification System
             </div>
-
         </div>
 
         <div class="header-status">
@@ -637,7 +619,7 @@ st.markdown("""
     </div>
 
 </div>
-""", unsafe_allow_html=True)
+""")
 
 
 # =====================================================
@@ -651,28 +633,24 @@ col1, col2 = st.columns(
 
 
 # =====================================================
-# 7. LEFT PANEL - IMAGE UPLOAD
+# 7. LEFT PANEL
 # =====================================================
 
 with col1:
 
-    st.markdown("""
-    <div style="margin-bottom:9px;">
-
-        <div class="section-heading">
-            🛰️ Satellite Telemetry Viewport
-        </div>
-
-        <div class="section-subtitle">
-            Satellite image input and visualization
-        </div>
-
+    st.html("""
+    <div class="section-heading">
+        🛰️ Satellite Telemetry Viewport
     </div>
-    """, unsafe_allow_html=True)
+
+    <div class="section-subtitle">
+        Satellite image input and visualization
+    </div>
+    """)
 
     uploaded_file = st.file_uploader(
-        "Upload Satellite Image (PNG / JPG / TIFF)",
-        type=["png", "jpg", "jpeg", "tif", "tiff"]
+        "Upload Satellite Image",
+        type=["jpg", "jpeg", "png", "tif", "tiff"]
     )
 
     image = None
@@ -699,54 +677,37 @@ with col1:
 
     else:
 
-        st.markdown("""
-        <div style="
-            background:white;
-            border:1px dashed #78a9dc;
-            border-radius:12px;
-            padding:70px 15px;
-            text-align:center;
-            margin-top:5px;">
+        st.html("""
+        <div class="empty-image">
 
-            <div style="font-size:48px;">
-                🛰️
-            </div>
+            <div class="empty-icon">🛰️</div>
 
-            <h3 style="
-                color:#174477;
-                font-size:18px;">
-                Satellite Image Viewport
-            </h3>
+            <h3>Satellite Image Viewport</h3>
 
-            <p style="
-                color:#8496ad;
-                font-size:12px;">
+            <p>
                 Upload a satellite image to start
                 disaster classification.
             </p>
 
-            <p style="
-                color:#9aabc0;
-                font-size:10px;">
+            <p>
                 Supported: PNG | JPG | JPEG | TIFF
             </p>
 
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 
 # =====================================================
-# 8. RIGHT PANEL - AI THREAT ASSESSMENT
+# 8. RIGHT PANEL
 # =====================================================
 
 with col2:
 
-    st.markdown("""
-    <div class="section-heading"
-         style="margin-bottom:12px;">
+    st.html("""
+    <div class="section-heading">
         ⚡ AI Threat Assessment
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     if image is not None:
 
@@ -764,9 +725,12 @@ with col2:
                     "Loading MH-ViT model..."
                 ):
 
-                    model, transform, classes, indices = (
-                        load_model()
-                    )
+                    (
+                        model,
+                        transform,
+                        classes,
+                        indices
+                    ) = load_model()
 
                 with st.spinner(
                     "Analyzing satellite image..."
@@ -788,8 +752,6 @@ with col2:
                 ) = result
 
                 info = CLASS_INFO[predicted_class]
-
-                # Build probability bars
 
                 probability_html = ""
 
@@ -819,9 +781,9 @@ with col2:
                         <div class="prob-track">
 
                             <div class="prob-fill"
-                                 style="
-                                 width:{percentage:.2f}%;
-                                 background:{class_info['color']};">
+                                style="
+                                width:{percentage:.2f}%;
+                                background:{class_info['color']};">
                             </div>
 
                         </div>
@@ -829,7 +791,7 @@ with col2:
                     </div>
                     """
 
-                st.markdown(f"""
+                st.html(f"""
                 <div class="assessment-card">
 
                     <div class="assessment-title">
@@ -848,7 +810,7 @@ with col2:
                         </div>
 
                         <div class="threat-label"
-                             style="color:{info['color']};">
+                            style="color:{info['color']};">
 
                             {info['icon']}
                             {html.escape(predicted_class.upper())}
@@ -876,7 +838,7 @@ with col2:
                     {probability_html}
 
                 </div>
-                """, unsafe_allow_html=True)
+                """)
 
             except Exception as error:
 
@@ -886,7 +848,7 @@ with col2:
 
         else:
 
-            st.markdown("""
+            st.html("""
             <div class="assessment-card">
 
                 <div class="assessment-title">
@@ -918,33 +880,24 @@ with col2:
                     Supported Disaster Categories
                 </div>
 
-                <div style="
-                    color:#7dd3fc;
-                    font-size:12px;
-                    margin:12px 0;">
+                <div class="supported-category">
                     🌊 Flood Detection
                 </div>
 
-                <div style="
-                    color:#93c5fd;
-                    font-size:12px;
-                    margin:12px 0;">
+                <div class="supported-category">
                     🔥 Wildfire Detection
                 </div>
 
-                <div style="
-                    color:#a5b4fc;
-                    font-size:12px;
-                    margin:12px 0;">
+                <div class="supported-category">
                     ⛰️ Landslide Detection
                 </div>
 
             </div>
-            """, unsafe_allow_html=True)
+            """)
 
     else:
 
-        st.markdown("""
+        st.html("""
         <div class="assessment-card">
 
             <div class="assessment-title">
@@ -976,36 +929,27 @@ with col2:
                 Supported Disaster Categories
             </div>
 
-            <div style="
-                color:#7dd3fc;
-                font-size:12px;
-                margin:12px 0;">
+            <div class="supported-category">
                 🌊 Flood Detection
             </div>
 
-            <div style="
-                color:#93c5fd;
-                font-size:12px;
-                margin:12px 0;">
+            <div class="supported-category">
                 🔥 Wildfire Detection
             </div>
 
-            <div style="
-                color:#a5b4fc;
-                font-size:12px;
-                margin:12px 0;">
+            <div class="supported-category">
                 ⛰️ Landslide Detection
             </div>
 
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 
 # =====================================================
-# 9. BOTTOM SYSTEM INFORMATION
+# 9. BOTTOM INFORMATION
 # =====================================================
 
-st.markdown(f"""
+st.html(f"""
 <div class="info-strip">
 
     <div class="info-item">
@@ -1034,7 +978,7 @@ st.markdown(f"""
     </div>
 
 </div>
-""", unsafe_allow_html=True)
+""")
 
 
 # =====================================================
